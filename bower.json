@@ -1,0 +1,25 @@
+{
+  "name": "crdemo",
+  "description": "demo app",
+  "main": "",
+  "authors": [
+    "Sachin Joshi <satchin.joshi@gmail.com>"
+  ],
+  "license": "MIT",
+  "moduleType": [],
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jpkleemans-angular-validate": "^1.0.0",
+    "angular": "^1.5.3",
+    "angular-ui-router": "ui-router#^0.2.18",
+    "bootstrap": "^3.3.6"
+  }
+}
