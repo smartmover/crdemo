@@ -52,6 +52,10 @@ class ApiController extends Controller
 
     protected function respondWithCollection($collection, $callback)
     {
+        $data = [];
+        foreach ($collection as $row) {
+            $data[] = $row;
+        }
         $collection = json_decode(json_encode($data), false);
         $resource = new Collection($collection, $callback);
         $rootScope = $this->fractal->createData($resource);

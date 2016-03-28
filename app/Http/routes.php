@@ -12,6 +12,7 @@
 */
 Route::group(['prefix' => 'api/v1'], function () {
     Route::get('info', 'InfoController@index');
+    Route::post('info', 'InfoController@store');
 });
 
 Route::get('{all}', function () {

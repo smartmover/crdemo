@@ -4,24 +4,27 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests;
 use Illuminate\Http\Request;
+use App\Repository\InfoRepository;
 use App\Transformer\InfoTransformer;
 
 class InfoController extends ApiController
 {
-    public function index(InfoTransformer $transformer)
+    public function index(InfoRepository $info, InfoTransformer $transformer)
     {
-        return [
-            'name'           => 'sachin',
-            'gender'         => 'test',
-            'phone'          => 'test',
-            'email'          => 'test',
-            'address'        => 'test',
-            'nationality'    => 'test',
-            'dob'            => 'test',
-            'edu_background' => 'test',
-            'prefer_moc'     => 'test',
-        ];
-        return $this->respondWithCollection($data, $transformer);
+        $results = $info->get();
+        return $this->respondWithCollection($results, $transformer);
     }
 
+    public function store(Request $request, InfoRepository $info)
+    {
+        $data = [];
+        foreach ($info->attribute as $attr) {
+            array_push($data, $request->get($attr));
+        }
+        $info->save($data);
+        return $this->setStatusCode(201)
+            ->respondWithArray([
+                'message' => 'Successfully Saved'
+            ]);
+    }
 }
