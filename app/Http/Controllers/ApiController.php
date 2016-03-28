@@ -29,7 +29,7 @@ class ApiController extends Controller
     {
         return $this->statusCode;
     }
-    
+
     /**
      * Setter for statusCode
      *
@@ -42,7 +42,7 @@ class ApiController extends Controller
         $this->statusCode = $statusCode;
         return $this;
     }
-    
+
     protected function respondWithItem($item, $callback)
     {
         $resource = new Item($item, $callback);
@@ -52,6 +52,7 @@ class ApiController extends Controller
 
     protected function respondWithCollection($collection, $callback)
     {
+        $collection = json_decode(json_encode($data), false);
         $resource = new Collection($collection, $callback);
         $rootScope = $this->fractal->createData($resource);
         return $this->respondWithArray($rootScope->toArray());
@@ -85,7 +86,7 @@ class ApiController extends Controller
     public function errorForbidden($message = 'Forbidden')
     {
         return $this->setStatusCode(403)
-          ->respondWithError($message);
+            ->respondWithError($message);
     }
 
     /**
@@ -96,9 +97,9 @@ class ApiController extends Controller
     public function errorInternalError($message = 'Internal Error')
     {
         return $this->setStatusCode(500)
-          ->respondWithError($message);
+            ->respondWithError($message);
     }
-    
+
     /**
      * Generates a Response with a 404 HTTP header and a given message.
      *
@@ -107,7 +108,7 @@ class ApiController extends Controller
     public function errorNotFound($message = 'Resource Not Found')
     {
         return $this->setStatusCode(404)
-          ->respondWithError($message);
+            ->respondWithError($message);
     }
 
     /**
@@ -118,7 +119,7 @@ class ApiController extends Controller
     public function errorUnauthorized($message = 'Unauthorized')
     {
         return $this->setStatusCode(401)
-          ->respondWithError($message);
+            ->respondWithError($message);
     }
 
     /**
@@ -129,7 +130,6 @@ class ApiController extends Controller
     public function errorWrongArgs($message = 'Wrong Arguments')
     {
         return $this->setStatusCode(400)
-          ->respondWithError($message);
+            ->respondWithError($message);
     }
 }
-

@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
 use App\Http\Requests;
+use Illuminate\Http\Request;
+use App\Transformer\InfoTransformer;
 
 class InfoController extends ApiController
 {
-    public function index()
+    public function index(InfoTransformer $transformer)
     {
         return [
             'name'           => 'sachin',
@@ -21,6 +21,7 @@ class InfoController extends ApiController
             'edu_background' => 'test',
             'prefer_moc'     => 'test',
         ];
+        return $this->respondWithCollection($data, $transformer);
     }
 
 }
