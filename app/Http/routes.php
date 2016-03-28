@@ -10,8 +10,9 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-
-Route::get('info', 'InfoController@index');
+Route::group(['prefix' => 'api/v1'], function () {
+    Route::get('info', 'InfoController@index');
+});
 
 Route::get('{all}', function () {
     return view('index');

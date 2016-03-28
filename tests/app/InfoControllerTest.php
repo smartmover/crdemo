@@ -4,10 +4,10 @@ class InfoControllerTest extends TestCase
 {
     public function testIndex()
     {
-        $response = $this->call('GET', '/info');
+        $response = $this->call('GET', '/api/v1/info');
         $this->assertResponseStatus(200);
 
-        $this->get('/info')
+        $this->get('/api/v1/info')
             ->seeJsonStructure([
                 'name',
                 'gender',
