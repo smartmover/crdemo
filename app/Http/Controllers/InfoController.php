@@ -6,6 +6,7 @@ use App\Http\Requests;
 use Illuminate\Http\Request;
 use App\Repository\InfoRepository;
 use App\Transformer\InfoTransformer;
+use App\Http\Requests\InfoPostRequest;
 
 class InfoController extends ApiController
 {
@@ -15,7 +16,7 @@ class InfoController extends ApiController
         return $this->respondWithCollection($results, $transformer);
     }
 
-    public function store(Request $request, InfoRepository $info)
+    public function store(InfoPostRequest $request, InfoRepository $info)
     {
         $data = [];
         foreach ($info->attribute as $attr) {

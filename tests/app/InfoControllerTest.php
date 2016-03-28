@@ -40,6 +40,18 @@ class InfoControllerTest extends TestCase
             ]);
     }
 
+    public function testInvalidRequest()
+    {
+        $data = $this->data;
+        unset($data['name']);
+        $data['email'] = 'invalid_email';
+        $this->json('POST', '/api/v1/info', $data)
+            ->seeJsonEquals([
+                'name' => ['The name field is required.'],
+                'email' => ['The email must be a valid email address.']
+            ]);
+    }
+
     public function testResponseData()
     {
         $this->info->save($this->data);
