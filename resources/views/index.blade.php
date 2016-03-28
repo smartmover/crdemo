@@ -28,7 +28,7 @@
           <ul class="nav navbar-nav">
             <li ui-sref-active="active"><a ui-sref="home">Home</a></li>
             <li ui-sref-active="active"><a ui-sref="add">Add</a></li>
-            <li><a href="#">List</a></li>
+            <li ui-sref-active="active"><a ui-sref="list">List</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>

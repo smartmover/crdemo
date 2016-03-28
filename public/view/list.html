@@ -1,0 +1,33 @@
+<div class="starter-template">
+    <table class="table table-hover"> 
+        <thead>
+            <tr> 
+                <th>#</th>
+                <th>Name</th>
+                <th>Gender</th>
+                <th>Phone</th>
+                <th>Email</th>
+                <th>Address</th>
+                <th>Nationality</th>
+                <th>Date of birth</th>
+                <th>Education background</th>
+                <th>Preferred mode of contact</th>
+            </tr>
+        </thead> 
+        <tbody>
+            <tr ng-repeat="info in data"> 
+                <th scope="row"></th>
+                <td>{{info.name}}</td>
+                <td>{{info.gender}}</td>
+                <td>{{info.phone}}</td>
+                <td>{{info.email}}</td>
+                <td>{{info.address}}</td>
+                <td>{{info.nationality}}</td>
+                <td>{{info.dob}}</td>
+                <td>{{info.edu_background}}</td>
+                <td>{{info.prefer_moc}}</td>
+            </tr>
+        </tbody> 
+    </table>
+</div>
+

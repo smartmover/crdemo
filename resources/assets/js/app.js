@@ -18,5 +18,10 @@ angular
             templateUrl: '/view/form.html',
             controller: 'addCtrl'
         })
+        .state('list', {
+            url: '/list',
+            templateUrl: '/view/list.html',
+            controller: 'listCtrl',
+        })
 }]);
 

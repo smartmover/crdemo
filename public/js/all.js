@@ -348,6 +348,11 @@ angular
             templateUrl: '/view/form.html',
             controller: 'addCtrl'
         })
+        .state('list', {
+            url: '/list',
+            templateUrl: '/view/list.html',
+            controller: 'listCtrl',
+        })
 }]);
 
 
@@ -359,10 +364,24 @@ angular
     $scope.validationOptions = {};
     $scope.submitForm = function(form){
           if(form.validate()) {
-
+              $scope.error = null;
+              $http.post('/api/v1/info', $scope.info)
+                  .success(function(response, status){
+                      $scope.formRes = response;
+                      $scope.error = null;
+                      $scope.info = {};
+                  })
+              .error(function(response){
+                  $scope.error = response;
+              })
           }
     }; 
+}])
+.controller('listCtrl', [ '$scope', '$http', function ($scope, $http) {
+    $http.get('/api/v1/info')
+        .success(function(response, status){
+                    $scope.data = response.data;
+                })
 }]);
-
 
 //# sourceMappingURL=all.js.map
