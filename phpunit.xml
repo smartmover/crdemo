@@ -12,6 +12,9 @@
         <testsuite name="app">
             <directory>./tests/app</directory>
         </testsuite>
+        <testsuite name="selenium">
+            <directory>./tests/selenium/</directory>
+        </testsuite>
     </testsuites>
     <filter>
         <whitelist>
