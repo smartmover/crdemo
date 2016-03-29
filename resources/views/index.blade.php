@@ -39,7 +39,9 @@
 
     <!-- compiled jc -->
     <script src="/js/all.js"></script>
-
+<script type="text/javascript" charset="utf-8">
+$('.datepicker').datepicker();
+</script>
   </body>
 </html>
 
