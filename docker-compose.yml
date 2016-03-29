@@ -1,0 +1,9 @@
+web:
+  build: .
+  ports:
+    - "8000:80"
+
+  volumes:
+    - ./:/var/www
+    - ./docker/sites:/etc/nginx/conf.d
+    - ./docker/logs:/var/logs
