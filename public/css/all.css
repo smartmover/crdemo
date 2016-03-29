@@ -11,6 +11,8 @@ body {
     padding: 40px 15px;
     text-align: center;
 }
-
+.nav>li {
+    text-align: center;
+}
 
 /*# sourceMappingURL=all.css.map */

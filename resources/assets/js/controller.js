@@ -19,9 +19,16 @@ angular
           }
     }; 
 }])
-.controller('listCtrl', [ '$scope', '$http', function ($scope, $http) {
-    $http.get('/api/v1/info')
+.controller('listCtrl', [ '$scope', '$http', '$stateParams', function ($scope, $http, $stateParams) {
+    $scope.perPage = 5;
+    $scope.currentPage = ($stateParams.page == 0) ? 1 : $stateParams.page;
+    $http.get('/api/v1/info?limit='+$scope.perPage+'&page='+$scope.currentPage)
         .success(function(response, status){
-                    $scope.data = response.data;
-                })
-}]);
+            $scope.data = response.data;
+            $scope.total = Math.ceil(response.meta.cursor.count/$scope.perPage);
+        })
+
+    $scope.range = function(n) {
+        return new Array(n);
+    };
+}])

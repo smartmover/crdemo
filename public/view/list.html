@@ -29,5 +29,10 @@
             </tr>
         </tbody> 
     </table>
+    <ul class="pagination" ng-if="(total > 1)">
+        <ul class="pagination"> 
+            <li ng-class="{'active': ($index+1)==currentPage}" ng-repeat="a in range(total) track by $index"><a ui-sref="list({page:$index+1})">{{$index + 1}}</a></li>
+        </ul>
+    </ul>
 </div>
 

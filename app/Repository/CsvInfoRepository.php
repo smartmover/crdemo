@@ -26,11 +26,20 @@ class CsvInfoRepository implements InfoRepository
         'prefer_moc'
     ];
 
-    public function get()
+    public function get($limit, $offset)
     {
         $reader = Reader::createFromPath(storage_path(env('CSV_PATH')));
 
-        return $reader->fetchAssoc($this->attribute);
+        $count = $reader->each(function() {
+            return true;
+        }); 
+
+        return [
+            'data' => $reader->setLimit($limit)
+                        ->setOffset($offset)
+                        ->fetchAssoc($this->attribute),
+            'total_count' => $count
+        ];
     }
 
     public function save($data)

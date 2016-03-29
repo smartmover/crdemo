@@ -12,8 +12,11 @@ class InfoController extends ApiController
 {
     public function index(InfoRepository $info, InfoTransformer $transformer)
     {
-        $results = $info->get();
-        return $this->respondWithCollection($results, $transformer);
+        $limit = $this->request->get('limit', 6);
+        $page = (int) $this->request->get('page', 1);
+        $offset = ($page >= 1) ? ($page-1) * $limit : 0;
+        $results = $info->get($limit, $offset);
+        return $this->respondWithCollection($results['data'], $transformer, $limit, $offset, $results['total_count']);
     }
 
     public function store(InfoPostRequest $request, InfoRepository $info)

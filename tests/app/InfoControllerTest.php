@@ -55,10 +55,17 @@ class InfoControllerTest extends TestCase
     public function testResponseData()
     {
         $this->info->save($this->data);
-
         $this->get('/api/v1/info')
-            ->seejson([
-                'data' => [$this->data]
+            ->seeJson([
+                'data' => [$this->data],
+                'meta' => [
+                    'cursor' => [
+                        'current' => 0,
+                        'prev' => -6,
+                        'next' => 6,
+                        'count' => 1
+                    ]
+          ]
         ]);
     }
 

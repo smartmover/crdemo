@@ -19,9 +19,15 @@ angular
             controller: 'addCtrl'
         })
         .state('list', {
-            url: '/list',
+            url: '/list?page',
             templateUrl: '/view/list.html',
             controller: 'listCtrl',
+            params: {
+                page: {
+                    value: '0',
+                    squash: true
+                }
+            }
         })
 }]);
 

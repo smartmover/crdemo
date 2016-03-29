@@ -50,7 +50,7 @@ class ApiController extends Controller
         return $this->respondWithArray($rootScope->toArray());
     }
 
-    protected function respondWithCollection($collection, $callback)
+    protected function respondWithCollection($collection, $callback, $limit, $offset, $total)
     {
         $data = [];
         foreach ($collection as $row) {
@@ -58,7 +58,10 @@ class ApiController extends Controller
         }
         $collection = json_decode(json_encode($data), false);
         $resource = new Collection($collection, $callback);
+        $cursor = new Cursor($offset, $offset-$limit, $offset+$limit, $total);
+        $resource->setCursor($cursor);
         $rootScope = $this->fractal->createData($resource);
+
         return $this->respondWithArray($rootScope->toArray());
     }
 
