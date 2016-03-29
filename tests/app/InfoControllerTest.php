@@ -34,6 +34,8 @@ class InfoControllerTest extends TestCase
 
     public function testStoreData()
     {
+        Event::shouldReceive('fire')
+                    ->once();
         $this->json('POST', '/api/v1/info', $this->data)
             ->seeJsonEquals([
                 'message' => 'Successfully Saved'

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Event;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 use App\Repository\InfoRepository;
@@ -26,6 +27,7 @@ class InfoController extends ApiController
             array_push($data, $request->get($attr));
         }
         $info->save($data);
+        Event::fire(new \App\Events\DataSavedEvent());
         return $this->setStatusCode(201)
             ->respondWithArray([
                 'message' => 'Successfully Saved'

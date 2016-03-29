@@ -41,6 +41,9 @@ $app->singleton(
     App\Exceptions\Handler::class
 );
 
+$app->configureMonologUsing(function($monolog){
+     $monolog->pushHandler(new Monolog\Handler\LogEntriesHandler(env('APP_LOGENTRIES_TOKEN')));
+});
 /*
 |--------------------------------------------------------------------------
 | Return The Application
