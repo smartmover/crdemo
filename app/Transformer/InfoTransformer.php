@@ -26,5 +26,3 @@ class InfoTransformer extends TransformerAbstract
         ];
     }
 }
-
-

@@ -30,9 +30,9 @@ class CsvInfoRepository implements InfoRepository
     {
         $reader = Reader::createFromPath(storage_path(env('CSV_PATH')));
 
-        $count = $reader->each(function() {
+        $count = $reader->each(function () {
             return true;
-        }); 
+        });
 
         return [
             'data' => $reader->setLimit($limit)
